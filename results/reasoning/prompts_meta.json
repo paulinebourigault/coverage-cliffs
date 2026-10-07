@@ -1,0 +1,20 @@
+{
+ "n_prompts": 16000,
+ "duplicates_dropped": 1,
+ "counts": {
+  "deploy": {
+   "gsm8k": 826,
+   "math": 1174
+  },
+  "dev": {
+   "gsm8k": 1734,
+   "math": 2466
+  },
+  "eval": {
+   "gsm8k": 4047,
+   "math": 5753
+  }
+ },
+ "digest": "a75452c964182321",
+ "seed": 20261001
+}

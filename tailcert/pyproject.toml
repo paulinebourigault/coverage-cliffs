@@ -1,0 +1,10 @@
+[project]
+name = "tailcert"
+version = "0.1.0"
+description = "Off-policy certification of quantile (tail) constraints from logged bandit data"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.21"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,14 @@
+# certificates, simulations, RouterBench replay and analysis (CPU)
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+matplotlib>=3.7
+pyarrow>=12
+huggingface_hub>=0.20
+# reasoning study: outcome-table replay (CPU) additionally needs
+scikit-learn>=1.3
+pyyaml>=6.0
+# reasoning study: generation and grading (GPU) additionally needs
+# vllm>=0.8.5  transformers>=4.51  datasets  math-verify  sympy
+# Optional context embeddings (not used in the reported experiments):
+# sentence-transformers  (reasoning/build_table.py --embed-model)

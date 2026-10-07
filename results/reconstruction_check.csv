@@ -1,0 +1,5 @@
+case,K,n,thresholds,max_moment_diff,max_bound_diff,decision_mismatch,moment_violations
+synthetic contextual,20,20000,4,1.3642420526593924e-11,7.993605777301127e-15,0,0
+synthetic all-zero weights,2,20000,1,0.0,0.0,0,0
+reasoning table (tokens),16,20000,4,6.366462912410498e-12,5.773159728050814e-15,0,0
+RouterBench table (cost),16,20000,4,6.195932655828074e-12,3.788636071533347e-15,0,0

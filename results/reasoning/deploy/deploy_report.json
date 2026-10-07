@@ -1,0 +1,216 @@
+{
+ "plan": {
+  "outcome": "output_tokens",
+  "eps": 0.5,
+  "K": 32,
+  "p": 0.9,
+  "tau": 2161.0,
+  "W": 14.0,
+  "delta": 0.05,
+  "routers": {
+   "certified": {
+    "j": 0,
+    "kind": "NOTHING CERTIFIED -> reference fallback",
+    "n_log": 9800,
+    "bound": null,
+    "Vhat": 0.9028571428571428,
+    "spec": {
+     "kind": "ref",
+     "kappa": null,
+     "temp": 0.0,
+     "action": 2
+    },
+    "eval_truth": {
+     "acc_true": 0.8954081535339355,
+     "Ymean_true": 709.4439795918368,
+     "G_true_p0.9": 0.05265305936336517,
+     "q_true_p0.9": 1381.0
+    }
+   },
+   "greedy": {
+    "j": 5,
+    "kind": "accuracy-greedy, UNCERTIFIED",
+    "n_log": 9800,
+    "bound": 0.1144731946555853,
+    "Vhat": 0.9641071428571428,
+    "spec": {
+     "kind": "det",
+     "kappa": 0.2080083823051904,
+     "temp": 0.0
+    },
+    "eval_truth": {
+     "acc_true": 0.9077550768852234,
+     "Ymean_true": 671.4533673469388,
+     "G_true_p0.9": 0.051326531916856766,
+     "q_true_p0.9": 1374.0
+    }
+   },
+   "reference": {
+    "j": 0,
+    "kind": "reference (always q8b_nothink)",
+    "n_log": 9800,
+    "bound": 0.1183078076916466,
+    "Vhat": 0.9028571428571428,
+    "spec": {
+     "kind": "ref",
+     "kappa": null,
+     "temp": 0.0,
+     "action": 2
+    },
+    "eval_truth": {
+     "acc_true": 0.8954081535339355,
+     "Ymean_true": 709.4439795918368,
+     "G_true_p0.9": 0.05265305936336517,
+     "q_true_p0.9": 1381.0
+    }
+   },
+   "certified_10x": {
+    "j": 26,
+    "kind": "exceedance-certified; certificate covers: eval pool only (resampled with replacement)",
+    "n_log": 98000,
+    "bound": 0.06195764976468872,
+    "Vhat": 0.9293928571428571,
+    "spec": {
+     "kind": "det",
+     "kappa": 0.46322603671262724,
+     "temp": 0.0
+    },
+    "eval_truth": {
+     "acc_true": 0.9081632494926453,
+     "Ymean_true": 671.0983673469387,
+     "G_true_p0.9": 0.051632653921842575,
+     "q_true_p0.9": 1370.0
+    }
+   },
+   "think_always": {
+    "j": -1,
+    "kind": "contrast: always q30b_think, UNCERTIFIED",
+    "n_log": 0,
+    "bound": null,
+    "Vhat": NaN,
+    "spec": {
+     "kind": "fixed",
+     "action": 6
+    },
+    "fixed_action": 6,
+    "eval_truth": {
+     "acc_true": 0.883265306122449,
+     "Ymean_true": 3197.3794897959183,
+     "G_true_p0.9": 0.5362244897959184,
+     "q_true_p0.9": 7903.0
+    }
+   }
+  }
+ },
+ "routers": {
+  "certified": {
+   "router": "certified",
+   "j": 0,
+   "n_log": 9800,
+   "n": 2000,
+   "P_exceed": 0.053,
+   "P_exceed_lo": 0.04401030668319261,
+   "P_exceed_hi": 0.06370359645166596,
+   "bound": null,
+   "target": 0.09999999999999998,
+   "meets_SLA": true,
+   "q_p_realized": 1386.0,
+   "tau": 2161.0,
+   "outcome": "output_tokens",
+   "mean_Y": 720.1975,
+   "accuracy": 0.883,
+   "acc_lo": 0.8681732470773175,
+   "acc_hi": 0.8963582408406897,
+   "mean_tokens": 720.1975,
+   "trunc_rate": 0.0115,
+   "eval_pool_G": 0.05265305936336517,
+   "eval_pool_acc": 0.8954081535339355,
+   "action_mix": {
+    "q8b_nothink": 1.0
+   }
+  },
+  "certified_10x": {
+   "router": "certified_10x",
+   "j": 26,
+   "n_log": 98000,
+   "n": 2000,
+   "P_exceed": 0.0475,
+   "P_exceed_lo": 0.039013879394732026,
+   "P_exceed_hi": 0.05772111203373219,
+   "bound": 0.06195764976468872,
+   "target": 0.09999999999999998,
+   "meets_SLA": true,
+   "q_p_realized": 1362.0,
+   "tau": 2161.0,
+   "outcome": "output_tokens",
+   "mean_Y": 651.5885,
+   "accuracy": 0.913,
+   "acc_lo": 0.8998427354074658,
+   "acc_hi": 0.9245737254545106,
+   "mean_tokens": 651.5885,
+   "trunc_rate": 0.0005,
+   "eval_pool_G": 0.051632653921842575,
+   "eval_pool_acc": 0.9081632494926453,
+   "action_mix": {
+    "q30b_nothink": 0.881,
+    "q8b_nothink": 0.115,
+    "q1.7b_nothink": 0.004
+   }
+  },
+  "greedy": {
+   "router": "greedy",
+   "j": 5,
+   "n_log": 9800,
+   "n": 2000,
+   "P_exceed": 0.051,
+   "P_exceed_lo": 0.04218982272001876,
+   "P_exceed_hi": 0.061531748885241856,
+   "bound": 0.1144731946555853,
+   "target": 0.09999999999999998,
+   "meets_SLA": true,
+   "q_p_realized": 1435.0,
+   "tau": 2161.0,
+   "outcome": "output_tokens",
+   "mean_Y": 687.7635,
+   "accuracy": 0.902,
+   "acc_lo": 0.8881886332731614,
+   "acc_hi": 0.9142700041760263,
+   "mean_tokens": 687.7635,
+   "trunc_rate": 0.008,
+   "eval_pool_G": 0.051326531916856766,
+   "eval_pool_acc": 0.9077550768852234,
+   "action_mix": {
+    "q30b_nothink": 0.856,
+    "q8b_nothink": 0.142,
+    "q1.7b_nothink": 0.002
+   }
+  },
+  "think_always": {
+   "router": "think_always",
+   "j": -1,
+   "n_log": 0,
+   "n": 2000,
+   "P_exceed": 0.531,
+   "P_exceed_lo": 0.5090901555799089,
+   "P_exceed_hi": 0.5527909831288594,
+   "bound": null,
+   "target": 0.09999999999999998,
+   "meets_SLA": false,
+   "q_p_realized": 7941.0,
+   "tau": 2161.0,
+   "outcome": "output_tokens",
+   "mean_Y": 3206.4415,
+   "accuracy": 0.8815,
+   "acc_lo": 0.8665984852580353,
+   "acc_hi": 0.8949387540127733,
+   "mean_tokens": 3206.4415,
+   "trunc_rate": 0.0975,
+   "eval_pool_G": 0.5362244897959184,
+   "eval_pool_acc": 0.883265306122449,
+   "action_mix": {
+    "q30b_think": 1.0
+   }
+  }
+ },
+ "deploy_gpu_hours_approx": 1.1562591763999728
+}

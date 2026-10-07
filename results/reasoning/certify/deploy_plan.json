@@ -1,0 +1,139 @@
+{
+ "outcome": "output_tokens",
+ "eps": 0.5,
+ "K": 32,
+ "p": 0.9,
+ "tau": 2161.0,
+ "W": 14.0,
+ "delta": 0.05,
+ "routers": {
+  "certified": {
+   "j": 0,
+   "kind": "no unstratified Exc-PB diagnostic crossing -> reference fallback",
+   "n_log": 9800,
+   "bound": null,
+   "Vhat": 0.9028571428571428,
+   "spec": {
+    "kind": "ref",
+    "kappa": null,
+    "temp": 0.0,
+    "action": 2
+   },
+   "eval_truth": {
+    "acc_true": 0.8954081535339355,
+    "Ymean_true": 709.4439795918368,
+    "G_true_p0.9": 0.05265305936336517,
+    "q_true_p0.9": 1381.0
+   }
+  },
+  "certified_bet": {
+   "j": 5,
+   "kind": "unstratified Exc-Bet threshold crossing; diagnostic only; no population certificate for this stratified single-pass log",
+   "n_log": 9800,
+   "bound": 0.0970170430370683,
+   "Vhat": 0.9641071428571428,
+   "spec": {
+    "kind": "det",
+    "kappa": 0.2080083823051904,
+    "temp": 0.0
+   },
+   "eval_truth": {
+    "acc_true": 0.9077550768852234,
+    "Ymean_true": 671.4533673469388,
+    "G_true_p0.9": 0.051326531916856766,
+    "q_true_p0.9": 1374.0
+   }
+  },
+  "greedy": {
+   "j": 5,
+   "kind": "accuracy-greedy, UNCERTIFIED",
+   "n_log": 9800,
+   "bound": 0.1144731946555853,
+   "Vhat": 0.9641071428571428,
+   "spec": {
+    "kind": "det",
+    "kappa": 0.2080083823051904,
+    "temp": 0.0
+   },
+   "eval_truth": {
+    "acc_true": 0.9077550768852234,
+    "Ymean_true": 671.4533673469388,
+    "G_true_p0.9": 0.051326531916856766,
+    "q_true_p0.9": 1374.0
+   }
+  },
+  "certified_bet_prod": {
+   "j": 5,
+   "kind": "stratified product-betting certified (q=0.4129); within-dataset iid population model",
+   "n_log": 9800,
+   "bound": 0.09680333951493303,
+   "Vhat": 0.9641071428571428,
+   "spec": {
+    "kind": "det",
+    "kappa": 0.2080083823051904,
+    "temp": 0.0
+   },
+   "eval_truth": {
+    "acc_true": 0.9077550768852234,
+    "Ymean_true": 671.4533673469388,
+    "G_true_p0.9": 0.051326531916856766,
+    "q_true_p0.9": 1374.0
+   }
+  },
+  "reference": {
+   "j": 0,
+   "kind": "reference (always q8b_nothink)",
+   "n_log": 9800,
+   "bound": 0.1183078076916466,
+   "Vhat": 0.9028571428571428,
+   "spec": {
+    "kind": "ref",
+    "kappa": null,
+    "temp": 0.0,
+    "action": 2
+   },
+   "eval_truth": {
+    "acc_true": 0.8954081535339355,
+    "Ymean_true": 709.4439795918368,
+    "G_true_p0.9": 0.05265305936336517,
+    "q_true_p0.9": 1381.0
+   }
+  },
+  "certified_10x": {
+   "j": 26,
+   "kind": "exceedance-certified; certificate covers: eval pool only (resampled with replacement)",
+   "n_log": 98000,
+   "bound": 0.06195764976468872,
+   "Vhat": 0.9293928571428571,
+   "spec": {
+    "kind": "det",
+    "kappa": 0.46322603671262724,
+    "temp": 0.0
+   },
+   "eval_truth": {
+    "acc_true": 0.9081632494926453,
+    "Ymean_true": 671.0983673469387,
+    "G_true_p0.9": 0.051632653921842575,
+    "q_true_p0.9": 1370.0
+   }
+  },
+  "think_always": {
+   "j": -1,
+   "kind": "contrast: always q30b_think, UNCERTIFIED",
+   "n_log": 0,
+   "bound": null,
+   "Vhat": NaN,
+   "spec": {
+    "kind": "fixed",
+    "action": 6
+   },
+   "fixed_action": 6,
+   "eval_truth": {
+    "acc_true": 0.883265306122449,
+    "Ymean_true": 3197.3794897959183,
+    "G_true_p0.9": 0.5362244897959184,
+    "q_true_p0.9": 7903.0
+   }
+  }
+ }
+}

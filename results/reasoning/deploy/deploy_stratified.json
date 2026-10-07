@@ -1,0 +1,48 @@
+{
+ "q": 0.4129375,
+ "n_gsm8k": 4047,
+ "n_math": 5753,
+ "delta": 0.05,
+ "K": 32,
+ "W": 14.0,
+ "tau": 2161.0,
+ "p": 0.9,
+ "results": {
+  "bet": {
+   "j": -1,
+   "bound": null,
+   "U_gsm8k": null,
+   "U_math": null,
+   "min_bound": 0.11117120295846294,
+   "argmin": 30
+  },
+  "pb": {
+   "j": -1,
+   "bound": null,
+   "U_gsm8k": null,
+   "U_math": null,
+   "min_bound": 0.14201928722744084,
+   "argmin": 30
+  },
+  "eb": {
+   "j": -1,
+   "bound": null,
+   "U_gsm8k": null,
+   "U_math": null,
+   "min_bound": 0.13571596216036758,
+   "argmin": 30
+  },
+  "bet_prod": {
+   "j": 5,
+   "bound": 0.09680333951493303,
+   "min_bound": 0.08873928552775467,
+   "argmin": 30,
+   "bound_greedy": 0.09680333951493303,
+   "bound_ref": 0.09982224313660204
+  }
+ },
+ "unstratified_bet": {
+  "j": 5,
+  "bound": 0.0970170430370683
+ }
+}

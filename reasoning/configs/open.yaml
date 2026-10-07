@@ -1,0 +1,82 @@
+# Reasoning-budget study: seven open-weight configurations served with vLLM.
+# A router picks one configuration per prompt; the certified outcome is Y = generated tokens
+# (thinking included) under the budget constraint P(Y > tau) <= 1 - p.
+#
+# One action = (model id, chat-template kwargs, sampling params[, max_tokens]).
+# `reasoning: true` => the output has a <think>...</think> block; an answer is graded only if the
+# block was closed (truncated while thinking => no answer, correct = 0).
+# Model weights are downloaded from the Hugging Face Hub into $HF_HOME.
+
+run_name: open
+seed: 20261001
+max_tokens: 8192            # generation cap; finish_reason == "length" => atom of Y at the cap
+max_model_len: 10240        # prompt + max_tokens must fit (vLLM)
+prompt_template: "{problem}\n\nPlease reason step by step, and put your final answer within \\boxed{{}}."
+
+prompts:
+  max_prompts: 16000        # 14000 outcome-table prompts (dev + eval) + 2000 deployment prompts
+  deploy_size: 2000         # fresh prompts for deploy_verify.py (never generated in the table)
+  dev_frac: 0.30            # fraction of the 14000 table prompts used for dev; the rest is eval
+  datasets:
+    - name: gsm8k
+      hf_id: openai/gsm8k
+      hf_config: main
+      splits: [train, test]
+    - name: math
+      # first source that loads is used (mirrors of the same dataset)
+      hf_id: [EleutherAI/hendrycks_math, DigitalLearningGmbH/MATH-lighteval, hendrycks/competition_math]
+      hf_config: [algebra, counting_and_probability, geometry, intermediate_algebra,
+                  number_theory, prealgebra, precalculus]
+      splits: [train, test]
+
+reference_action: q8b_nothink          # fixed reference router; fallback when nothing certifies
+logging_base: {action: q1.7b_nothink}  # pi_base of pi0^eps = (1-eps) pi_base + eps/M
+
+actions:
+  - name: q1.7b_nothink
+    model: Qwen/Qwen3-1.7B
+    reasoning: false
+    chat_template_kwargs: {enable_thinking: false}
+    sampling: {temperature: 0.7, top_p: 0.8, top_k: 20, min_p: 0.0}     # Qwen3 recommended (non-thinking)
+    est_output_tokens: 350
+  - name: q1.7b_think
+    model: Qwen/Qwen3-1.7B
+    reasoning: true
+    chat_template_kwargs: {enable_thinking: true}
+    sampling: {temperature: 0.6, top_p: 0.95, top_k: 20, min_p: 0.0}    # Qwen3 recommended (thinking)
+    est_output_tokens: 3000
+  - name: q8b_nothink
+    model: Qwen/Qwen3-8B
+    reasoning: false
+    chat_template_kwargs: {enable_thinking: false}
+    sampling: {temperature: 0.7, top_p: 0.8, top_k: 20, min_p: 0.0}
+    est_output_tokens: 350
+  - name: q8b_think
+    model: Qwen/Qwen3-8B
+    reasoning: true
+    chat_template_kwargs: {enable_thinking: true}
+    sampling: {temperature: 0.6, top_p: 0.95, top_k: 20, min_p: 0.0}
+    est_output_tokens: 2500
+  - name: r1d_qwen7b
+    # The R1-Distill chat template pre-fills "<think>\n", so the output is "... </think> answer".
+    # DeepSeek recommends T=0.6, top_p=0.95 and no system prompt.
+    model: deepseek-ai/DeepSeek-R1-Distill-Qwen-7B
+    reasoning: true
+    chat_template_kwargs: {}
+    sampling: {temperature: 0.6, top_p: 0.95}
+    est_output_tokens: 3000
+  - name: q30b_nothink
+    model: Qwen/Qwen3-30B-A3B         # MoE, ~3B active parameters, ~61 GB bf16 weights
+    reasoning: false
+    chat_template_kwargs: {enable_thinking: false}
+    sampling: {temperature: 0.7, top_p: 0.8, top_k: 20, min_p: 0.0}
+    est_output_tokens: 350
+  - name: q30b_think
+    model: Qwen/Qwen3-30B-A3B
+    reasoning: true
+    chat_template_kwargs: {enable_thinking: true}
+    sampling: {temperature: 0.6, top_p: 0.95, top_k: 20, min_p: 0.0}
+    est_output_tokens: 2500
+
+llm_kwargs:
+  default: {dtype: bfloat16}
